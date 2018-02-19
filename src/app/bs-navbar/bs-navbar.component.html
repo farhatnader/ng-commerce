@@ -16,12 +16,14 @@
         <a class="nav-link" routerLink="/shopping-cart">Cart</a>
       </li>
 
+      <!-- rendered by else condition from dropdown below -->
       <ng-template #anonUser>
         <li class="nav-item"> 
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
       </ng-template>
 
+      <!-- since user$ from AuthService is an observable, use async -->
       <li ngbDropdown *ngIf="auth.user$ | async as user; else anonUser" class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" 
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
