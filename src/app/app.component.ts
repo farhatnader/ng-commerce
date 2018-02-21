@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,13 @@ export class AppComponent {
    * - when user goes to login route when already logged in
    * -- default '/' will have been assigned to localStorage, see AuthService
    */
-  constructor(private auth: AuthService, router: Router) {
+  constructor(private userService: UserService, private auth: AuthService, router: Router) {
     // no need to unsubscribe since this component will live until app is closed
     auth.user$.subscribe(user => {
       if (user) {
+        // atm, no registration concept, so this is fine for now
+        userService.save(user);
+
         let returnUrl = localStorage.getItem('returnUrl');
         router.navigateByUrl(returnUrl);
       }
