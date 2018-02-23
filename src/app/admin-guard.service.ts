@@ -3,7 +3,7 @@ import { CanActivate } from '@angular/router';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
+
 
 @Injectable()
 export class AdminGuardService implements CanActivate {
@@ -15,8 +15,7 @@ export class AdminGuardService implements CanActivate {
   // so that we can map object within this second obeservable
   // without having to call subscribe() within a map()/subscribe()
   canActivate(): Observable<boolean> {
-    return this.auth.user$
-      .switchMap(user => this.userService.get(user.uid))
+    return this.auth.appUser$
       .map(appUser => appUser.isAdmin);
   }
 
