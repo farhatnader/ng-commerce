@@ -18,12 +18,13 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminGuardService } from './admin-guard.service';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,13 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
       }
     ])
   ],
-  providers: [ AuthService, AuthGuardService, UserService, AdminGuardService ],
+  providers: [ 
+    AuthService, 
+    AuthGuardService,
+    AdminGuardService,
+    UserService,
+    CategoryService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
