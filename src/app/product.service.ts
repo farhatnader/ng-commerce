@@ -14,4 +14,14 @@ export class ProductService {
     return this.db.list('/products');
   }
 
+  get(productId) {
+    return this.db.object('/products/' + productId);
+  }
+
+  // product object should not have 'id' key in it, as firebase does not like
+  // hence have separate argument for id
+  update(productId, product) {
+    return this.db.object('/products/' + productId).update(product);
+  }
+
 }

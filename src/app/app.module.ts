@@ -65,13 +65,18 @@ import { ProductService } from './product.service';
       
       // protected admin paths with canActivate, see AdminGuardService
       { 
-        path: 'admin/products', 
-        component: AdminProductsComponent, 
+        path: 'admin/products/new', 
+        component: ProductFormComponent, 
         canActivate: [ AuthGuardService, AdminGuardService ] 
       },
       { 
-        path: 'admin/products/new', 
+        path: 'admin/products/:id', 
         component: ProductFormComponent, 
+        canActivate: [ AuthGuardService, AdminGuardService ] 
+      },
+      { 
+        path: 'admin/products', 
+        component: AdminProductsComponent, 
         canActivate: [ AuthGuardService, AdminGuardService ] 
       },
       { 
