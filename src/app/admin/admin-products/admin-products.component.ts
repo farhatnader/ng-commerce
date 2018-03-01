@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../../product.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-admin-products',
@@ -8,7 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit , OnDestroy {
-  products: any[]; // should be array to implement filter feature
+  products: Product[]; // array to implement filter
   filteredProducts: any[];
   subscription: Subscription; // to point to an open subscription
 
