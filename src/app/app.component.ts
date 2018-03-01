@@ -26,7 +26,14 @@ export class AppComponent {
         userService.save(user);
 
         let returnUrl = localStorage.getItem('returnUrl');
-        router.navigateByUrl(returnUrl);
+        // if a return url exists, remove it from storage before redirecting
+        // this is to prevent the stored url from being redirected to
+        // everytime the user tries to load a page via the address bar
+        // which essentially reloads the app and runs this code
+        if (returnUrl) {
+          localStorage.removeItem('returnUrl');
+          router.navigateByUrl(returnUrl);
+        }
       }
     })
   }
