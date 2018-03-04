@@ -1,10 +1,12 @@
 .card {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .card-img-container {
     height: 158px;
     overflow-y: hidden;
-    background-color: grey;
+}
+
+img {
+    min-height: 158px;
 }
