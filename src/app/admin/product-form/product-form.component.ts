@@ -22,7 +22,7 @@ export class ProductFormComponent implements OnInit {
       private categoryService: CategoryService, 
       private productService: ProductService) {
 
-    this.categories$ = categoryService.getCategories();
+    this.categories$ = categoryService.getAll();
 
     // paramMap instead of queryParamMap b/c no manual queryParams passed in
     this.id = this.route.snapshot.paramMap.get('id');
