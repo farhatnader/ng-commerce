@@ -6,5 +6,8 @@
 .card-img-container {
     height: 158px;
     overflow-y: hidden;
-    background-color: grey;
+}
+
+img {
+    min-height: 158px;
 }
