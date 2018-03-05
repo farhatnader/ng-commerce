@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import 'rxjs/add/operator/switchMap';
@@ -13,15 +12,11 @@ import 'rxjs/add/operator/switchMap';
 export class ProductsComponent {
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  categories$;
   category: string;
 
   constructor(
       private route: ActivatedRoute,
-      private productService: ProductService, 
-      private categoryService: CategoryService) {
-
-    this.categories$ = categoryService.getAll();
+      private productService: ProductService) {
 
     // switchMap in order to allow sequential subscription
     // subscribe to getAll(), then subscribe to returned observable
