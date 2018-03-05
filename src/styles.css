@@ -8,3 +8,16 @@ body {
 a {
     cursor: pointer;
 }
+
+.card-small .card {
+    margin-bottom: 10px;
+}
+
+.card-small .card .card-img-container {
+    height: 158px;
+    overflow-y: hidden;
+}
+
+.card-small .card .card-img-container .card-img-top {
+    min-height: 158px;
+}
