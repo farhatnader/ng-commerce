@@ -7,9 +7,9 @@
     <h5 class="card-title">{{ product.title }}</h5>
     <p class="card-text">{{ product.price | currency:'USD':true }}</p>
 
-    <a *ngIf="showActions" href="#" class="btn btn-primary">
+    <button *ngIf="showActions" (click)="addToCart(product)" class="btn btn-primary">
       <span>Add to Cart </span>
       <span><i class="fa fa-shopping-cart"></i></span>
-    </a>
+    </button>
   </div>
 </div>
