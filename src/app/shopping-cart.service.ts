@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import { Product } from './models/product';
+import { ShoppingCart } from './models/shopping-cart';
 
 @Injectable()
 export class ShoppingCartService {
@@ -34,10 +37,13 @@ export class ShoppingCartService {
     return result.key;
   }
 
-  // @return cart instance from db
-  async getCart() {
+  // get promise of observable of cart instance from db
+  // use map to make sure the type is of custom ShoppingCart class
+  // @return promise of observable of ShoppingCart instance
+  async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db.object('/shopping-carts/' + cartId)
+      .map(x => new ShoppingCart(x.items));
   }
 
   async updateCart(product: Product, changeVal: number) {
