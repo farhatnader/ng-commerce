@@ -3,14 +3,25 @@
     <img *ngIf="product.imageUrl" 
         class="card-img-top" [src]="product.imageUrl" [alt]="product.title">
   </div>
+
   <div class="card-body">
     <h5 class="card-title">{{ product.title }}</h5>
     <p class="card-text">{{ product.price | currency:'USD':true }}</p>
+    <div *ngIf="showActions">
+      <button (click)="addToCart()" class="btn btn-primary" [disabled]="getQuantity()">
+        <span *ngIf="getQuantity() === 0">Add to Cart &nbsp;</span>
+        <span><i class="fa fa-shopping-cart"></i></span>
+        <span *ngIf="getQuantity()">&nbsp; {{ getQuantity() }}</span>
+      </button>
 
-    <button *ngIf="showActions" (click)="addToCart(product)" class="btn btn-primary">
-      <span>Add to Cart </span>
-      <span><i class="fa fa-shopping-cart"></i></span>
-      <span>{{ getQuantity() }}</span>
-    </button>
+      <span *ngIf="getQuantity()">
+        <button (click)="addToCart()" class="btn btn-success">
+          <span><i class="fa fa-plus"></i></span>
+        </button>
+        <button (click)="removeFromCart()" class="btn btn-danger">
+          <span><i class="fa fa-minus"></i></span>
+        </button>
+      </span>
+    </div>
   </div>
 </div>

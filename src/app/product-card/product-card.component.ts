@@ -16,8 +16,13 @@ export class ProductCardComponent {
 
   // add item to cart without needing auth
   // by utilizing browser's local storage + db
-  addToCart(product: Product) {
-    this.cartService.addToCart(product);
+  addToCart() {
+    this.cartService.addToCart(this.product);
+  }
+
+  // applicable when product has been added to cart instance
+  removeFromCart() {
+    this.cartService.removeFromCart(this.product);
   }
 
   getQuantity() {
