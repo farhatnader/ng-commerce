@@ -16,7 +16,8 @@ export class ShoppingCartService {
   }
 
   // @return cart instance from db
-  private getCart(cartId: string) {
+  public async getCart() {
+    let cartId = await this.getCartId();
     return this.db.object('/shopping-carts/' + cartId);
   }
 
@@ -28,7 +29,7 @@ export class ShoppingCartService {
   // if not, create an anon cart instance in db, and store id
   // use async/await to use thenable referance cleanly
   // async returns a promise
-  private async getCartId() {
+  private async getCartId() : Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (cartId) return cartId;
       

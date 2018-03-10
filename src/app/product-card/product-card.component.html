@@ -10,6 +10,7 @@
     <button *ngIf="showActions" (click)="addToCart(product)" class="btn btn-primary">
       <span>Add to Cart </span>
       <span><i class="fa fa-shopping-cart"></i></span>
+      <span>{{ getQuantity() }}</span>
     </button>
   </div>
 </div>
