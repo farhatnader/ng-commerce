@@ -13,7 +13,12 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart">Cart</a>
+        <a class="nav-link" routerLink="/shopping-cart">
+          Cart
+          <span *ngIf="cart$ | async as cart" class="badge badge-warning badge-pill">
+            {{ cart.totalItemsCount }}
+          </span>
+        </a>
       </li>
 
       <!-- rendered by else condition from dropdown below -->

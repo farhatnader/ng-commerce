@@ -1,4 +1,8 @@
-
 .dropdown-toggle {
     cursor: pointer;
+}
+
+.badge {
+    vertical-align: text-top;
+    padding-bottom: .2em;
 }
