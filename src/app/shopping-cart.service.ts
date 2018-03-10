@@ -20,6 +20,10 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId);
   }
 
+  private getItem(cartId: string, productId: string) {
+    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
+  }
+
   // check if browser's local storage has a cart id
   // if not, create an anon cart instance in db, and store id
   // use async/await to use thenable referance cleanly
@@ -40,8 +44,7 @@ export class ShoppingCartService {
   // keep entire product object in cart for use in cart page
   async addToCart(product) {
     let cartId = await this.getCartId();
-    let item$ = this.db.object('/shopping-carts/' 
-                               + cartId + '/items/' + product.$key);
+    let item$ = this.getItem(cartId, product.$key);
     item$.take(1).subscribe(item => {
       if (item.$exists()) item$.update({ quantity: item.quantity + 1 });
       else item$.set({ product: product, quantity: 1 });
